@@ -59,9 +59,17 @@ pipeline {
         stage('Collect Basic System Stats') {
             steps {
                 sh '''
-                    top -l 1 > results/system_top.txt || true
-                    vm_stat > results/system_vmstat.txt || true
-                    ls -lh results > results/results_listing.txt
+            mkdir -p results
+
+            if [ "$(uname)" = "Darwin" ]; then
+                top -l 1 > results/system_top.txt || true
+                vm_stat > results/system_vmstat.txt || true
+            else
+                top -b -n 1 > results/system_top.txt || true
+                vmstat > results/system_vmstat.txt || true
+            fi
+
+            ls -lh results > results/results_listing.txt
                 '''
             }
         }
