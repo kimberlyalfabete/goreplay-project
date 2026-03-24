@@ -14,21 +14,21 @@ pipeline {
         stage('Start Source App') {
             steps {
                 sh './scripts/start_source.sh'
-                sh 'sleep 5'
+                sh 'sleep 15'
             }
         }
 
         stage('Start Target App') {
             steps {
                 sh './scripts/start_target.sh'
-                sh 'sleep 5'
+                sh 'sleep 15'
             }
         }
 
         stage('Start GoReplay') {
             steps {
                 sh './scripts/run_gor.sh'
-                sh 'sleep 5'
+                sh 'sleep 15'
             }
         }
 
