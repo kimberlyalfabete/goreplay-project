@@ -23,16 +23,16 @@ TEST_NAME="$1"
 
 case "$TEST_NAME" in
   normal)
-    "$WRK_BIN" -t2 -c20 -d30s "http://127.0.0.1:8080/api/data?q=hello" > results/wrk_normal.txt 2>&1
+    "$WRK_BIN" -t2 -c20 -d30s "http://127.0.0.1:8080/api/data?q=hello" > results/benchmark_normal_load.txt 2>&1
     ;;
   another_normal)
-    "$WRK_BIN" -t2 -c20 -d30s "http://127.0.0.1:8080/api/data?q=test123" > results/wrk_another_normal.txt 2>&1
+    "$WRK_BIN" -t2 -c20 -d30s "http://127.0.0.1:8080/api/data?q=test123" > results/benchmark_query_load.txt 2>&1
     ;;
   slow)
-    "$WRK_BIN" -t2 -c20 -d30s "http://127.0.0.1:8080/api/slow" > results/wrk_slow.txt 2>&1
+    "$WRK_BIN" -t2 -c20 -d30s "http://127.0.0.1:8080/api/slow" > results/benchmark_slow_response.txt 2>&1
     ;;
   error)
-    "$WRK_BIN" -t2 -c20 -d30s "http://127.0.0.1:8080/api/error" > results/wrk_error.txt 2>&1
+    "$WRK_BIN" -t2 -c20 -d30s "http://127.0.0.1:8080/api/error" > results/benchmark_error_response.txt 2>&1
     ;;
   *)
     echo "Usage: $0 {normal|another_normal|slow|error}"
